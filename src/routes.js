@@ -2,12 +2,10 @@ import Login from "./views/Login.svelte";
 import Home from "./views/Home.svelte";
 import Contact from "./views/Contact.svelte";
 
-import { loggedIn } from "./store/auth";
+import { user } from "./store/auth";
 
 function userIsAdmin() {
-  let status = false;
-  loggedIn.update((v) => (status = v));
-  return status;
+  return user.data.loggedIn;
 }
 
 const routes = [
