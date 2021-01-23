@@ -1,0 +1,18 @@
+$colors-map: (
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+  "link": $color-link,
+  "success": $color-success,
+  "danger": $color-danger,
+  "warning": $color-warning,
+  "info": $color-info,
+) !default;
+
+@each $name, $color in $colors-map {
+  .c-#{$name} {
+    color: $color !important;
+  }
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+}
