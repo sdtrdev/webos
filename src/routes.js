@@ -1,26 +1,26 @@
-import Intro from "./views/Intro.svelte";
 import Login from "./views/Login.svelte";
 import Home from "./views/Home.svelte";
-import BSOD from "./views/BSOD.svelte";
-import { wrap } from "svelte-spa-router/wrap";
-import { loggedIn } from "./store/auth";
-import { push } from "svelte-spa-router";
+import Contact from "./views/Contact.svelte";
 
-export default {
-  "/": Intro,
-  "/home": wrap({
+import { loggedIn } from "./store/auth";
+
+function userIsAdmin() {
+  let status = false;
+  loggedIn.update((v) => (status = v));
+  return status;
+}
+
+const routes = [
+  {
+    name: "/",
     component: Home,
-    conditions: [
-      async (detail) => {
-        if (!loggedIn) {
-          push("/");
-          return false;
-        } else {
-          return true;
-        }
-      },
-    ],
-  }),
-  "/login": Login,
-  "*": BSOD,
-};
+  },
+  { name: "login", component: Login },
+  {
+    name: "contact",
+    component: Contact,
+    onlyIf: { guard: userIsAdmin, redirect: "/login" },
+  },
+];
+
+export { routes };

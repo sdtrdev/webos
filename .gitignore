@@ -1,2 +1,4 @@
-node_modules
-.vscode
+/node_modules/
+/public/build/
+
+.DS_Store

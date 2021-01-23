@@ -1,17 +1,27 @@
 <script>
-  import Router from "svelte-spa-router";
-  import routes from "./routes";
+  import { Router } from "svelte-router-spa";
+  import { routes } from "./routes";
+  import { loggedIn } from "./store/auth";
+
+  const handleLogin = () => {
+    $loggedIn = !$loggedIn;
+  };
 </script>
 
-<main class="main">
-  <Router {routes} />
-</main>
+<Router {routes} />
 
+<nav>
+  <a href="/">home</a>
+  <a href="/login">login</a>
+  <a href="/contact">contact</a>
+</nav>
+
+<button on:click={handleLogin}>
+  {#if !$loggedIn} login {:else} logout {/if}
+</button>
 
 <style>
-  .main {
-    height: 100vh;
-    background: url("../img/wp.jpg") no-repeat center center;
-    background-size: cover;
+  nav {
+    position: relative;
   }
 </style>
