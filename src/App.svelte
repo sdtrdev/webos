@@ -21,6 +21,8 @@
 </button>
 
 <style>
+  @import "styles/app.scss";
+
   nav {
     position: relative;
   }
