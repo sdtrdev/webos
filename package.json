@@ -18,8 +18,11 @@
     "tinro": "^0.5.8"
   },
   "dependencies": {
+    "node-sass": "^5.0.0",
     "rollup-plugin-scss": "^2.6.1",
+    "sass": "^1.32.5",
     "sirv-cli": "^1.0.0",
+    "svelte-preprocess": "^4.6.3",
     "svelte-router-spa": "^5.8.3"
   }
 }
