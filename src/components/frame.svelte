@@ -40,6 +40,20 @@
     width = diff;
   }
 
+  $: if (direction === DIRECTONS.LEFT) {
+    /*     const cwidth = getComputedStyle(panel)
+      .getPropertyValue("width")
+      .replace("px", "");
+    console.log(mouseEvent.clientX, cwidth, panel.offsetLeft);
+
+    if (cwidth > 200) {
+      width = parseFloat(cwidth) - (mouseEvent.pageX - panel.offsetLeft);
+      left = mouseEvent.pageX;
+    } */
+    /*      left = mouseEvent.clientX; */
+    /*     width = parseInt(width) - (mouseEvent.clientX - panel.offsetLeft); */
+  }
+
   $: if (direction === DIRECTONS.BOTTOM) {
     let diff = mouseEvent.clientY - panel.offsetTop;
     height = diff;
@@ -80,6 +94,11 @@
     class="resize resize-bottom-right"
   />
 
+  <span
+    on:mousedown={() => startReize(DIRECTONS.LEFT)}
+    class="resize resize-left"
+  />
+
   <slot />
 </section>
 
@@ -87,7 +106,6 @@
   .draggable {
     user-select: none;
     position: absolute;
-    border: solid 1px black;
     text-overflow: ellipsis;
     overflow: hidden;
     word-break: break-all;
@@ -112,6 +130,14 @@
         bottom: 0;
         height: 5px;
         background-color: blue;
+      }
+
+      &-left {
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 5px;
+        background-color: hotpink;
       }
 
       &-bottom-right {
