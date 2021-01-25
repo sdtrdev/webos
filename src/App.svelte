@@ -1,14 +1,12 @@
 <script>
   import { Router } from "svelte-router-spa";
   import { routes } from "./routes";
-  import { loggedIn } from "./store/auth";
+  import { user } from "./store/auth";
 
   const handleLogin = () => {
-    $loggedIn = !$loggedIn;
+    user.login();
   };
 </script>
-
-<Router {routes} />
 
 <nav>
   <a href="/">home</a>
@@ -16,8 +14,10 @@
   <a href="/contact">contact</a>
 </nav>
 
+<Router {routes} />
+
 <button on:click={handleLogin}>
-  {#if !$loggedIn} login {:else} logout {/if}
+  {#if !$user.loggedIn} login {:else} logout {/if}
 </button>
 
 <style>
